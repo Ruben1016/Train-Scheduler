@@ -62,26 +62,30 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log(trainFirst);
   console.log(trainFrenquency);
 
+
+// I am confused on moment.js
   // Prettify the employee start
-  var empStartPretty = moment.unix(trainFirst).format("MM/DD/YYYY");
+  var trainNow = moment.unix(trainFirst).format('h:mm:ss a');
 
   // Calculate the months worked using hardcore math
   // To calculate the months worked
-  var empMonths = moment().diff(moment(trainFirst, "X"), "months");
-  console.log(empMonths);
+  var trainTime = moment().diff(moment(trainFirst, "X"), "time");
+  console.log(trainTime);
 
   // Calculate the total billed rate
-  var empBilled = empMonths * empRate;
-  console.log(empBilled);
+  var trainMinutes= trainTime * trainFrenquency;
+  console.log(trainMinutes;
 
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(TrainName),
     $("<td>").text(trainDestination),
-    $("<td>").text(empStartPretty),
-    $("<td>").text(empMonths),
+    $("<td>").text(trainNow),
+    $("<td>").text(trainTime),
     $("<td>").text(trainFrenquency),
-    $("<td>").text(empBilled)
+    $("<td>").text(trainMinutes),
+
+
   );
 
   // Append the new row to the table
